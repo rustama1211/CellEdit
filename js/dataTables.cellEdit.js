@@ -167,7 +167,7 @@ function getInputHtml(currentColumnIndex, settings, oldValue) {
                 break;
             }
 	        jQuery(".datepick").datepicker("destroy");
-	        input.html = "<input id='ejbeatycelledit' type='text' name='date' class='datepick " + inputCss + "'   value='" + oldValue + "'></input> &nbsp;<a href='#' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this)'>Confirm</a> <a href='#' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'>Cancel</a>";
+	        input.html = "<input id='ejbeatycelledit' type='text' name='date' class='datepick " + inputCss + "'   value='" + oldValue + "'></input> &nbsp;<a href='javascript:void(0)' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this)'>Confirm</a> <a href='javascript:void(0)' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'>Cancel</a>";
 	        setTimeout(function () { //Set timeout to allow the script to write the input.html before triggering the datepicker 
 	            var icon = "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif";
                 // Allow the user to provide icon 
