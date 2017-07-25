@@ -1,4 +1,4 @@
-﻿/*! CellEdit 1.0.19
+/*! CellEdit 1.0.19
  * ©2016 Elliott Beaty - datatables.net/license
  */
 
@@ -23,7 +23,7 @@
 
 jQuery.fn.dataTable.Api.register('MakeCellsEditable()', function (settings) {
     var table = this.table();
-
+    var selectedCell =[];
     jQuery.fn.extend({
         // UPDATE
         updateEditableCell: function (callingElement) {
@@ -69,7 +69,7 @@ jQuery.fn.dataTable.Api.register('MakeCellsEditable()', function (settings) {
             }
             // Get current page
             var currentPageIndex = table.page.info().page;
-            
+            selectedCell =[];
             //Redraw table
             table.page(currentPageIndex).draw(false);
         },
@@ -79,7 +79,7 @@ jQuery.fn.dataTable.Api.register('MakeCellsEditable()', function (settings) {
             var cell = table.cell($(callingElement).parent());
             // Set cell to it's original value
             cell.data(cell.data())
-
+            selectedCell =[];
             // Redraw table
             table.draw();
         }
@@ -112,6 +112,15 @@ jQuery.fn.dataTable.Api.register('MakeCellsEditable()', function (settings) {
                     // Input CSS
                     var input = getInputHtml(currentColumnIndex, settings, oldValue);
                     $(cell).html(input.html);
+                    if(selectedCell.length)
+                    {
+                        
+                        var cella = table.cell(selectedCell[0]);
+                        // Set cell to it's original value
+                        cella.data(cella.data())
+                        selectedCell =[];
+                    }
+                    selectedCell.push($(cell));
                     if (input.focus) {
                         $('#ejbeatycelledit').focus();
                     }
